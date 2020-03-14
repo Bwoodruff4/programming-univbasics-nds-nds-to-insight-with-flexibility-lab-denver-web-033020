@@ -33,6 +33,9 @@ end
 
 # Your code after this point
 
+studio_totals(directors_database)
+
+
 def movies_with_director_key(name, movies_collection)
   # GOAL: For each Hash in an Array (movies_collection), provide a collection
   # of movies and a directors name to the movie_with_director_name method
@@ -48,6 +51,19 @@ def movies_with_director_key(name, movies_collection)
   # Array of Hashes where each Hash represents a movie; however, they should all have a
   # :director_name key. This addition can be done by using the provided
   # movie_with_director_name method
+  
+  
+  array=[]
+  i=0
+  
+  while i<movies_collection.length do
+    movie_hash=movie_with_director_name(name,movies_collection[i])
+    array<< movie_hash
+    i+=1
+  end
+  
+  return array
+  
 end
 
 
@@ -63,7 +79,27 @@ def gross_per_studio(collection)
   #
   # Hash whose keys are the studio names and whose values are the sum
   # total of all the worldwide_gross numbers for every movie in the input Hash
+  
+  
+  result={ }
+  i=0
+  
+  while i < collection.length do
+    studio_name=collection[i][:studio]
+    gross=collection[i][:worldwide_gross]
+    
+    if result.key?(studio_name)
+      result[studio_name] = result[studio_name]+ gross
+    else
+      result[studio_name]=gross
+    end
+    i+=1
+  end
+  
+  return result
+  
 end
+
 
 def movies_with_directors_set(source)
   # GOAL: For each director, find their :movies Array and stick it in a new Array
@@ -76,6 +112,32 @@ def movies_with_directors_set(source)
   #
   # Array of Arrays containing all of a director's movies. Each movie will need
   # to have a :director_name key added to it.
+  
+  
+  result =[]
+  i=0
+  
+  
+  while i < source.length do
+    name=source[i][:name]
+    j=0
+    director_array =[]
+    while j <source[i][:movies].size
+      movie=source[i][:movies][j][:title]
+      director_array << {:title => movie, :director_name => name}
+      j+=1
+    end
+    
+    #pp name
+    #pp movies
+    
+    result << director_array
+    i+=1
+  end
+  
+  
+  return result
+
 end
 
 # ----------------    End of Your Code Region --------------------
