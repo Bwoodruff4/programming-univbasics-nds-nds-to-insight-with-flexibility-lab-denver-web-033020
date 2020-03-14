@@ -33,7 +33,7 @@ end
 
 # Your code after this point
 
-studio_totals(directors_database)
+studios_totals(directors_database)
 
 
 def movies_with_director_key(name, movies_collection)
@@ -144,7 +144,7 @@ end
 # Don't edit the following code! Make the methods above work with this method
 # call code. You'll have to "see-saw" to get this to work!
 
-def studio_totals(nds)
+def studios_totals(nds)
   a_o_a_movies_with_director_names = movies_with_directors_set(nds)
   movies_with_director_names = flatten_a_o_a(a_o_a_movies_with_director_names)
   return gross_per_studio(movies_with_director_names)
