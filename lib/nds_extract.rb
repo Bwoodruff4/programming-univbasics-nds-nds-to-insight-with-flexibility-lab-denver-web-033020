@@ -89,7 +89,7 @@ def gross_per_studio(collection)
     gross=collection[i][:worldwide_gross]
     
     if result.key?(studio_name)
-      result[studio_name] = result[studio_name]+ gross
+      result[studio_name] +=gross
     else
       result[studio_name]=gross
     end
